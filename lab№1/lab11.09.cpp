@@ -9,19 +9,22 @@ int main() { // Main function(start of program)
     SetConsoleOutputCP(1251);
 
     int choice = 0;
-    cout << "Оберіть завдання : ";
-    cout << "1. Вирішення lab1begin18";
-    cout << "2. Вирішення lab1begin26";
+    cout << "Оберіть завдання : " <<endl;
+    cout << "1. Вирішення lab1begin18" << endl;
+    cout << "2. Вирішення lab1begin26" << endl;
     cin >> choice;
     switch (choice) {
-        case 1:
+    case 1:
+        {
             std::cout << "Ви обрали вирішення lab1begin18\n";
             int y = 0;// Оголошення змінної
             cout << "Введіть невідому : " << endl;
             cin >> y;
-            cout << "(4(y-3)^6-7(y-3)^3+2) =  " << (4 * ((y - 3)*(y - 3)*(y - 3)*(y - 3)*(y - 3)*(y - 3)) - 7 * ((y - 3)*(y - 3)*(y - 3)) + 2); //Вирішення завдання
+            cout << "(4(y-3)^6-7(y-3)^3+2) =  " << (4 * ((y - 3) * (y - 3) * (y - 3) * (y - 3) * (y - 3) * (y - 3)) - 7 * ((y - 3) * (y - 3) * (y - 3)) + 2); //Вирішення завдання
             break;
-        case 2:
+        }
+    case 2:
+        {
             std::cout << "Вы обрали вирішення lab1begin26\n";
             double X, A, Y, B = 0; // Оголошення змінних
             //////////////////////////////////////|
@@ -32,7 +35,7 @@ int main() { // Main function(start of program)
             cout << "Введіть масу печива(кг) : ";
             cin >> Y;
             cout << "Введіть ціну печива : ";
-            cin >> B; 
+            cin >> B;
             //////////////////////////////////////|   Ініціалізація змінних
             double PricePerMass1 = A / X;
             double PricePerMass2 = B / Y;
@@ -40,14 +43,17 @@ int main() { // Main function(start of program)
             cout << "Ціна за 1кг цукерок :  " << PricePerMass1 << endl;
             cout << "Ціна за 1кг печива : " << PricePerMass2 << endl;
 
-            if(PricePerMass1>PricePerMass2){
+            if (PricePerMass1 > PricePerMass2) {
                 cout << "Ціна цукерок більша на " << PricePerMass1 / PricePerMass2 << " аніж печиво" << endl;
             }
             else {
                 cout << "Ціна цукерок менша на " << PricePerMass1 / PricePerMass2 << " аніж печиво" << endl;
             }
             break;
-        default:
+        }
+    default:
+        {
             std::cout << "Такого варіанту немає\n";
+        }
     }
 }
