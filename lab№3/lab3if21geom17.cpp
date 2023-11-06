@@ -154,18 +154,18 @@ void geo172() {
 	int choice = 0;
 
 again2:cout << "Оберiть, площу та периметр якої фiгури ви хочете дiзнатися: "
-"\n1. Фiгури у II координатнiй чвертi"
+"\n1. Фiгури у I координатнiй чвертi"
 "\n2. Фiгури у III координатнiй чвертi" << endl;
 cin >> choice;
 switch (choice) {
 case 1: {
-	cout << "Периметр фiгури у II координатнiй площинi дорiвнює " << perimeterar1 << endl;
-	cout << "Площа фiгури у II координатнiй площинi дорiвнює " << squarearea1 << endl;
+	cout << "Периметр фiгури у I координатнiй площинi дорiвнює " << perimeterar1 << endl;
+	cout << "Площа фiгури у I координатнiй площинi дорiвнює " << squarearea1 << endl;
 	break;
 }
 case 2: {
 	cout << "Периметр фiгури у III координатнiй площинi дорiвнює " << perimeterar2 << endl;
-	cout << "Площа фiгури у II координатнiй площинi дорiвнює " << squarearea2 << endl;
+	cout << "Площа фiгури у III координатнiй площинi дорiвнює " << squarearea2 << endl;
 	break;
 }
 default: {
