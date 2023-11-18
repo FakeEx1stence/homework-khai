@@ -1,0 +1,202 @@
+#include <iostream>
+#include <locale.h>
+
+using namespace std;
+   // Proc32 Boolean14 Integer26
+
+
+void Proc32();                              //Proc32
+bool BoolProc(float& R);					//Функція перевірки на діапазон
+void SolveProc32(float& R);
+
+void Boolean14();							//Boolean14
+int CheckBool(int& A, int& B, int& C);		//Функція перевірки чисел на коректність
+bool IsPositive(int A, int B, int C);		//Функція вирішення Boolean14
+
+void Integer26();							//Integer26
+int EnterInteger();							//Функція вводу даних
+int Solving(int K);							//Функція вирішення задачі Integer26
+void cOutInteger(int week);					//Функція виводу даних
+
+
+
+int main()
+{
+	setlocale(LC_ALL, "Ukrainian");
+	int choice = 0;
+	cout << "Оберіть задачу для вирішення: "
+		"\n1.Proc32"
+		"\n2.Boolean14"
+		"\n3.Integer26" << endl;
+	cin >> choice;
+
+		switch (choice) //Меню
+		{
+			case 1: {
+				Proc32();
+				break;
+			}
+			case 2: {
+				Boolean14();
+				break;
+			}
+			case 3: {
+				Integer26();
+				break;
+			}
+			default:
+			{
+				cout << "Такого варіанту немає";
+			}
+		} 
+}
+void Proc32()					//Proc32
+{
+	float r1, r2, r3, r4, r5;
+	cout << "Введіть радіан: ";
+	cin >> r1;
+	if (BoolProc(r1))
+	{
+		SolveProc32(r1);
+	}
+
+	cout << "Введіть радіан: ";
+	cin >> r2;
+	if (BoolProc(r2))
+	{
+		SolveProc32(r2);
+	}
+
+	cout << "Введіть радіан: ";
+	cin >> r3;
+	if (BoolProc(r3))
+	{
+		SolveProc32(r3);
+	}
+
+	cout << "Введіть радіан: ";
+	cin >> r4;
+	if (BoolProc(r4))
+	{
+		SolveProc32(r4);
+	}
+
+	cout << "Введіть радіан: ";
+	cin >> r5;
+	if (BoolProc(r5))
+	{
+		SolveProc32(r5);
+	}
+}
+
+
+
+void SolveProc32(float& R)
+{	
+	cout << "Відповідь: " << R * (180 / 3.14) << endl;
+}
+
+bool BoolProc(float& R)
+{
+	float Pi = 3.14;
+	if (R >= 0 && R < 2 * Pi)
+	{
+		return R;
+	}
+	else
+	{
+		cout << "Змінна R більше ніж 2*pi або менше за нуль";
+		exit(0);
+	}
+}
+
+void Boolean14()					//Boolean14
+{	
+	int A, B, C;
+
+	cout << "Введiть A: ";
+	cin >> A;
+
+	cout << "Введiть B: ";
+	cin >> B;
+
+	cout << "Введiть C: ";
+	cin >> C;
+
+	CheckBool(A,B,C);
+
+	if (IsPositive(A,B,C))
+	{
+		cout << "Тут рівно одне число є додатним";
+	}
+	else
+	{
+		cout << "Тут менше/більше за одне число є додатним";
+	}
+
+}
+
+int CheckBool(int &A, int &B, int &C)
+{
+	if (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(100, '\n');
+		cout << "\nПомилка";
+		exit(0);
+	}
+	return 0;
+}
+
+bool IsPositive(int A, int B, int C)
+{
+	bool IsPositive = A > 0 && B < 0 && C < 0 || A < 0 && B > 0 && C < 0 || A < 0 && B < 0 && C > 0;
+	return IsPositive;
+}
+
+void Integer26()					//Integer26
+{
+
+	int K = EnterInteger();
+	int week = Solving(K);
+	cOutInteger(week);
+
+}
+
+int EnterInteger()
+{
+	int K = 0;
+	cout << "Введіть день у діапазоні від 1 до 365(включно): ";
+	cin >> K;
+	if (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(100, '\n');
+		cout << "\nПомилка";
+		exit(0);
+	}
+	while (!cin.fail())
+	{
+		if (K > 0 && K < 366)
+		{
+			break;
+		}
+		else
+		{
+			cout << "не входить у діапазон 1-365";
+			exit(0);
+		}
+	}
+	return K;
+}
+
+int Solving(int K)
+{
+	int week = K % 7 + 1;
+	return week;
+}
+
+void cOutInteger(int week)
+{
+	cout << "День тижня: " << week;
+}
