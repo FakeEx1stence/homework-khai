@@ -5,12 +5,12 @@ using namespace std;
    // Proc32 Boolean14 Integer26
 
 
-void Proc32();                              //Proc32
+void RadToDeg();                              //Proc32
 bool BoolProc(float& R);					//Функція перевірки на діапазон
 void SolveProc32(float& R);
 
 void Boolean14();							//Boolean14
-int CheckBool(int& A, int& B, int& C);		//Функція перевірки чисел на коректність
+int CheckBool(int A, int B, int C);		//Функція перевірки чисел на коректність
 bool IsPositive(int A, int B, int C);		//Функція вирішення Boolean14
 
 void Integer26();							//Integer26
@@ -50,7 +50,7 @@ int main()
 			}
 		} 
 }
-void Proc32()					//Proc32
+void RadToDeg()					//Proc32
 {
 	float r1, r2, r3, r4, r5;
 	cout << "Введіть радіан: ";
