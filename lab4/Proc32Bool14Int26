@@ -136,7 +136,7 @@ void Boolean14()					//Boolean14
 
 }
 
-int CheckBool(int &A, int &B, int &C)
+int CheckBool(int A, int B, int C)
 {
 	if (cin.fail())
 	{
