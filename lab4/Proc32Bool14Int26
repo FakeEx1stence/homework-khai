@@ -33,7 +33,7 @@ int main()
 		switch (choice) //Меню
 		{
 			case 1: {
-				Proc32();
+				RadToDeg();
 				break;
 			}
 			case 2: {
