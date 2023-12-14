@@ -85,10 +85,6 @@ void checkpair(int arr[], int n) {
 		if (arr[i - 1] % 2 == 0 && arr[i] % 2 == 1 || arr[i - 1] % 2 == 1 && arr[i] % 2 == 0)
 		{
 			if (i + 2 == n) {
-				count++;
-				continue;
-			}
-			if (count == 1) {
 				cout << "0" << endl;
 				break;
 			}
