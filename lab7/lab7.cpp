@@ -4,13 +4,14 @@
 
 using namespace std;
 
-void array39(); // Завдання #39
-void answer(int nonunique);
-
-void array51(); // Завдання #51
-
 const int M = 50, N = 50;
 
+void array39(); // Завдання #39
+int count(const int a[M][N], const int row, const int column);
+void enter(int a[M][N], int& column, int& row);
+
+void array51(); // Завдання #51 Дана матриця розміру M × N. Поміняти місцями рядки, що містять
+void swap(int a[M][N], const int row, const int column); // мінімальний і максимальний елементи матриці.
 
 int main() {
 	srand(time(NULL));			//Генератор семя случайности
@@ -47,75 +48,115 @@ int main() {
     }
 }
 
+
 void array39() {					//Завдання 39
+	int matr1[M][N];						// Массив
+	int row, column;
 
-	int a[M][N];						// Массив(не забыть переименовать в matr1)
-	int row = 0, column = 0, nonunique = 0;
-	bool foundZero = false;				//Переменная-проверка на ноль
-
-	do
-	{
-		cout << "Число рядків (2-20): ";
-		cin >> row;
-		cout << "Число стовпців (2-20): ";					
-		cin >> column;
-	}
-	// доки некоректні вхід.дані
-	while (column < 2 || column>N || row <2 || row>M);
-
-	int size = 0;
+	enter(matr1, row, column);
 
 	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < column; j++) {							//Случайные значение всем элементам массива
-			a[i][j] = (rand() % 15) + 1;
-		}
-	}
-
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < column; j++) {							//Отладка
-			cout << a[i][j] << " ";
+		for (int j = 0; j < column; j++) {
+			cout << " | " << matr1[i][j] << "\t | ";
 		}
 		cout << "\n";
 	}
 
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < column; j++) {							//Отметка неуникальных столбцов придавая повторным значениям 0
+	cout << "Тут " << count(matr1, row, column) << " неунiкальних стовпцiв" << endl;
+}
+
+int count(const int a[M][N], const int row, const int column) {
+	bool foundZero = false;
+	int nonunique = 0;
+
+	for (int j = 0; j < column; j++) {
+		foundZero = 0;
+		for (int i = 0; i < row; i++) {
 			for (int g = i + 1; g < row; g++) {
 				if (a[i][j] == a[g][j]) {
-					a[g][j] = 0;
+					foundZero = true;
+					break;
 				}
 			}
-		}
-	}
-
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < column; j++) {						//Проверка на нахождение неуникального столбца
-			if (a[i][j] == 0) {
-				foundZero = true;
+			if (foundZero) {
 				break;
 			}
 		}
 		if (foundZero) {
 			nonunique++;
 		}
-	} 
+	}
+	return nonunique;
+}
 
 
-	cout << "\n\nTemp Array\n\n";
+void enter(int a[M][N], int& column, int& row) {
+	do
+	{
+		cout << "Число стовпцiв (2-20): ";
+		cin >> column;
+		cout << "Число рядкiв (2-20): ";
+		cin >> row;
+	}
+	// доки некоректні вхід.дані
+	while (column < 2 || column>N || row <2 || row>M);
+
+	for (int i = 0; i < column; i++) {
+		for (int j = 0; j < row; j++) {							//Случайные значение всем элементам массива
+			a[i][j] = (rand() % 100) + 1;
+		}
+	}
+}
+
+
+void array51() {					//Завдання 51
+	int matr1[M][N];						// Массив
+	int row = 0, column = 0;
+
+	enter(matr1, row, column);
 
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < column; j++) {
-			cout << "| " << a[i][j] << " | ";								//Отладка
+			cout << " | " << matr1[i][j] <<  "\t | ";
 		}
 		cout << "\n";
 	}
-	answer(nonunique);											//Вызов функции ответа
+
+	swap(matr1, row, column);
 }
 
-void answer(int nonunique) {
-	cout << "\n Тут " << nonunique << " стовпцi з повторюючими елементами" << endl;
-}
+void swap(int a[M][N], const int row, const int column) {
+	int min = 100, max = 0; 
+	int temp[M];
+	int minIx = 0,maxIx = 0; 
+
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < column; j++) {
+			if (a[i][j] < min) {
+				min = a[i][j];
+				minIx = i;
+			}
+			else if (a[i][j] > max) {
+				max = a[i][j];
+				maxIx = i;
+			}	
+		}
+	}
+
+	cout << "Min number is " << min << " and it is located in this index: " << minIx << endl;
+	cout << "Max number is " << max << " and it is located in this index: " << maxIx << endl;
+
+	for (int i = 0; i < column; i++) {
+		temp[i] = a[minIx][i];
+		a[minIx][i] = a[maxIx][i];
+		a[maxIx][i] = temp[i];
+	}
 	
-void array51() {					//Завдання 51
-	cout << "hello";
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < column; j++) {
+			cout << " | " << a[i][j] << "\t | ";
+		}
+		cout << "\n";
+	}
+
 }
